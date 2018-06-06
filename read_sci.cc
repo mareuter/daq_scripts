@@ -20,7 +20,7 @@
 
 #define PARTITION argv[1]
 #define IMAGE     argv[2]
-#define PIX_MASK 0x3FFFF
+#define PIX_MASK 0x1FFFF
 static const int NUMAMPS = 16;
 static const char ERROR[] = "A partition name and image name must be provided as a command line argument\n";
 

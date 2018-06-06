@@ -20,6 +20,7 @@
 
 #define PARTITION argv[1]
 #define IMAGE     argv[2]
+#define PIX_MASK 0x20000
 static const int NUMAMPS = 16;
 static const char ERROR[] = "A partition name and image name must be provided as a command line argument\n";
 
@@ -97,7 +98,8 @@ void process_ccd(std::vector<std::ofstream*> const &fhc,
   {
     for(auto amp = 0; amp < NUMAMPS; ++amp)
     {
-      fhc[amp]->write(reinterpret_cast<const char *>(&ccd[s].segment[amp]), 4);
+      int32_t X = PIX_MASK ^ ((ccd[s].segment[amp]));
+      fhc[amp]->write(reinterpret_cast<const char *>(&X), 4);
     }
   } 
 }
